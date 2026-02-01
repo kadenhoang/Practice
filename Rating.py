@@ -2,12 +2,11 @@ def get_rating():
   while True:
     try:
       points = float(input("Rating: "))
-      rating(points)
-      break
+      return points
     except ValueError:
       print("Invalid Input!!!")
 
-def rating(points):
+def classify_rating(points):
 
   if points > 4.5:
     print("Extraordinary")
@@ -23,6 +22,6 @@ def rating(points):
 
 def main():
   points = get_rating()
-  rating(points)
+  classify_rating(points)
 
 main()
