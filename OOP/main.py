@@ -1,9 +1,8 @@
 from teacher import Teacher
 from student import Student
 
-def main():   
-    teacher = None
-    student = None
+def main(): 
+
 
     while True:
         print("Action Menu: ")
@@ -11,8 +10,6 @@ def main():
         print("2. Enter Student Information")
         print("3. Print Teacher Information")
         print("4. Print Student Information")
-
-
         
         try:
             choice = int(input("Choose an option (1-4): "))
