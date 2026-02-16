@@ -1,4 +1,4 @@
-from human import Human
+from human import Human, required_input
 import string
 
 class Teacher(Human):
@@ -38,13 +38,61 @@ class Teacher(Human):
 
     @classmethod
     def get_teacher(cls):
-        name = input("Name: ")
-        age = input("Age: ")
-        gender = input("Gender: ")
-        id = input("ID: ")
-        subject = input("Subject: ")
-        salary = input("Salary: ")
-        return cls(name, age, gender, id, subject, salary)
+        """
+        PSEUDOCODE (Get teacher from user):
+          REPEAT
+            GET name, age, gender, id, subject, salary (each via required_input so none empty)
+            TRY create Teacher, set each attribute (triggers validation)
+              IF success THEN RETURN teacher
+            CATCH ValueError THEN print error "Please try again", continue loop
+          UNTIL valid teacher created
+        """
+        t = cls(None, None, None, None, None, None)
+        # Validate each attribute immediately after user enters it (refill instantly if wrong)
+        while True:
+            name = required_input("Name: ")
+            try:
+                t.name = name
+                break
+            except (ValueError, AttributeError, TypeError) as e:
+                print(f"  ✗ Name: {e}. Please re-enter Name.")
+        while True:
+            age = required_input("Age: ")
+            try:
+                t.age = age
+                break
+            except (ValueError, AttributeError, TypeError) as e:
+                print(f"  ✗ Age: {e}. Please re-enter Age (positive number).")
+        while True:
+            gender = required_input("Gender: ")
+            try:
+                t.gender = gender
+                break
+            except (ValueError, AttributeError, TypeError) as e:
+                print(f"  ✗ Gender: {e}. Please re-enter Gender (Male, Female, or Other).")
+        while True:
+            id = required_input("ID: ")
+            try:
+                t.id = id
+                break
+            except (ValueError, AttributeError, TypeError) as e:
+                print(f"  ✗ ID: {e}. Please re-enter ID (positive number).")
+        while True:
+            subject = required_input("Subject: ")
+            try:
+                t.subject = subject
+                break
+            except (ValueError, AttributeError, TypeError) as e:
+                print(f"  ✗ Subject: {e}. Please re-enter Subject.")
+        while True:
+            salary = required_input("Salary: ")
+            try:
+                t.salary = salary
+                break
+            except (ValueError, AttributeError, TypeError) as e:
+                print(f"  ✗ Salary: {e}. Please re-enter Salary (positive number).")
+        return t
     
     def print_teacher(self):
+        # PSEUDOCODE: Display teacher name, age, gender, id, subject, salary (one per line)
         print(f"Teacher Name: {self._name} \n Age: {self._age} \n Gender: {self._gender} \n ID: {self._id} \n Subject: {self._subject} \n Salary: ${self._salary}")
